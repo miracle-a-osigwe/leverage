@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leverage — Technical Specification</title>
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --card-bg: #ffffff;
+      --card-border: #e6e0d4;
+      --ink: #191817;
+      --ink-muted: #6b665f;
+      --crimson: #b91c1c;
+      --crimson-bg: #fef2f2;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --sage: #15803d;
+      --sage-bg: #f0fdf4;
+      --font-serif: "Newsreader", Georgia, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: var(--ink-muted);
+      max-width: 740px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+    }
+    .badge-draft { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+    .badge-neutral { background: #f3efe6; color: var(--ink-muted); border: 1px solid var(--card-border); }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .arch-diagram {
+      background: #f7f4ec;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .arch-flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .arch-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      padding: 1rem;
+      border-radius: 4px;
+    }
+
+    .arch-header {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .arch-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .arch-desc {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 1.25rem;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--ink-muted);
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab-btn.active {
+      color: var(--ink);
+      font-weight: 600;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    pre {
+      background: #191817;
+      color: #fbfaf7;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .comp-card {
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      padding: 1rem;
+      background: #faf8f5;
+    }
+
+    .comp-name {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .comp-ref {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="meta-tag">DEVPOST LEARN // BUILD WITH AI: BASICS // SPEC</div>
+      <h1>Leverage — Technical Specification</h1>
+      <div class="tagline">The engineering blueprint for building the high-stakes communication, meeting prep, and contract review copilot.</div>
+      <div class="badge-bar">
+        <span class="badge badge-draft">STATUS: DRAFT → READY FOR APPROVAL</span>
+        <span class="badge badge-neutral">DOC: SPEC.MD COMPANION</span>
+        <span class="badge badge-neutral">STACK: VITE + REACT + TS + TAILWIND</span>
+      </div>
+    </header>
+
+    <!-- Architecture & Data Flow -->
+    <div class="card">
+      <h2>Architecture & 0ms Reactive Data Flow</h2>
+      <div class="arch-diagram">
+        <div class="arch-flow">
+          <div class="arch-box">
+            <div class="arch-header">CLIENT INPUT</div>
+            <div class="arch-title">Presets & Editor</div>
+            <div class="arch-desc">User selects scenario preset or writes draft. Emits payload into negotiation state hook.</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-header">TACTICAL MATRIX</div>
+            <div class="arch-title">synthesisEngine.ts</div>
+            <div class="arch-desc">0ms phrase-level hazard scanner. Matches passive-aggression, hedging, and concessions.</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-header">CALIBRATION BUS</div>
+            <div class="arch-title">Firmness × Diplomacy</div>
+            <div class="arch-desc">Dual sliders dynamically recalculate semantic substitutions and live Leverage Index.</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-header">EDITORIAL OUTPUT</div>
+            <div class="arch-title">Redline & Dispatch</div>
+            <div class="arch-desc">Renders inline strikethroughs, hazard pills, clean dispatch copy, and tactical rationale.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Mapping -->
+    <div class="card">
+      <h2>Component Structure (Tied to PRD)</h2>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-name">&lt;TelemetryBar /&gt;</div>
+          <div class="comp-ref">Implements PRD &gt; Top Header &amp; Telemetry Bar</div>
+          <p style="font-size: 0.85rem; color: var(--ink-muted);">Persona toggle (Founder/Employee), tab navigation, Firmness &amp; Diplomacy sliders, and animated circular Leverage Gauge.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-name">&lt;DocumentWorkspace /&gt;</div>
+          <div class="comp-ref">Implements PRD &gt; Subtext Equalizer</div>
+          <p style="font-size: 0.85rem; color: var(--ink-muted);">Controls ViewSwitcher (Redline, Clean, Raw), holds RedlineViewer, PresetSelector, and TacticalDebriefDrawer.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-name">&lt;ObjectionSimulator /&gt;</div>
+          <div class="comp-ref">Implements PRD &gt; Objection Simulator</div>
+          <p style="font-size: 0.85rem; color: var(--ink-muted);">Renders adversarial investor/manager objections and 3 high-conviction counter-frames (Direct Answer, Pivot, High Ground).</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-name">&lt;ClauseRadar /&gt;</div>
+          <div class="comp-ref">Implements PRD &gt; Clause Radar</div>
+          <p style="font-size: 0.85rem; color: var(--ink-muted);">Scans contract clauses for gotchas (Red/Amber/Green) and renders 1-click equitable counter-clauses with copy button.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Details Tabs -->
+    <div class="card">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('tab-filetree')">Planned File Tree</button>
+        <button class="tab-btn" onclick="showTab('tab-stack')">Stack &amp; Run Instructions</button>
+        <button class="tab-btn" onclick="showTab('tab-simplifications')">Simplifications &amp; Tradeoffs</button>
+      </div>
+
+      <div id="tab-filetree" class="tab-pane active">
+        <pre>devpost-new/
+├── devpost/                         # Devpost learning workspace
+│   ├── learner-profile.md
+│   ├── scope.md / scope.html
+│   ├── prd.md / prd.html
+│   └── spec.md / spec.html
+├── src/
+│   ├── components/
+│   │   ├── TelemetryBar.tsx         # Header, persona switch, sliders, gauge
+│   │   ├── DocumentWorkspace.tsx    # Equalizer container & view toggles
+│   │   ├── RedlineViewer.tsx        # Inline strikethrough & hazard renderer
+│   │   ├── CleanDispatchView.tsx    # Send-ready clean view + 1-click copy
+│   │   ├── PresetSelector.tsx       # 1-click scenario preset chips
+│   │   ├── TacticalDebriefDrawer.tsx# Strategic negotiation rationale
+│   │   ├── ObjectionSimulator.tsx   # Meeting objection counter-frames
+│   │   └── ClauseRadar.tsx          # Contract gotcha scanner & counter-terms
+│   ├── data/
+│   │   ├── scenarioPresets.ts       # Presets for founders and employees
+│   │   ├── objectionPresets.ts      # Meeting stress-test presets
+│   │   └── clausePresets.ts         # Contract review presets
+│   ├── engine/
+│   │   └── synthesisEngine.ts       # Live redline diff & leverage index engine
+│   ├── types/
+│   │   └── index.ts                 # Type definitions
+│   ├── App.tsx                      # Main application view & tab coordinator
+│   ├── index.css                    # Swiss Editorial custom Tailwind tokens
+│   └── main.tsx                     # React root mount
+├── package.json                     # Dependencies & scripts
+└── tailwind.config.js               # Color palette & font definitions</pre>
+      </div>
+
+      <div id="tab-stack" class="tab-pane">
+        <p><strong>Stack:</strong> React 18/19 + Vite 6 + TypeScript + Tailwind CSS + Lucide Icons</p>
+        <p style="margin-top: 0.5rem;"><strong>How to Run:</strong></p>
+        <pre>npm install
+npm run dev
+# Open http://localhost:5173</pre>
+        <p style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.5rem;">
+          No external API keys or network dependencies needed. Reviewers and demo recording will run at 100% speed with zero configuration.
+        </p>
+      </div>
+
+      <div id="tab-simplifications" class="tab-pane">
+        <ul>
+          <li><strong>Client-Side Engine over Remote LLM on Sliders:</strong> Avoids 3-5 second network lag and rate limits during live slider movement; delivers 0ms 60fps responsiveness.</li>
+          <li><strong>Preloaded High-Stakes Presets over Multi-Page PDF Parser:</strong> Avoids PDF layout bugs and OCR failures, giving evaluators instant gratification in a 60-second video demo.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>

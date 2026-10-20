@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #fbfaf7;
+    color: #191817;
+  }
+}
+
+/* Custom Redline strikethrough & insertion styles */
+.redline-del {
+  text-decoration: line-through;
+  text-decoration-color: #b91c1c;
+  text-decoration-thickness: 1.5px;
+  color: #991b1b;
+  background-color: #fef2f2;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.25rem;
+  margin-right: 0.2rem;
+  display: inline;
+}
+
+.redline-ins {
+  color: #15803d;
+  background-color: #f0fdf4;
+  border-bottom: 2px solid #22c55e;
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  display: inline;
+}
+
+/* Custom hair-thin slider track styling */
+input[type="range"] {
+  accent-color: #191817;
+}

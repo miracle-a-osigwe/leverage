@@ -1,0 +1,24 @@
+# Personal learning profile (kept private from commits)
+/devpost/learner-profile.md
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies & caches
+node_modules/
+dist/
+dist-ssr/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
