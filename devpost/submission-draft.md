@@ -103,7 +103,7 @@ Most negotiation advice is either overly theoretical or locked behind expensive 
 ---
 
 ### Built With (Devpost Tags)
-`react`, `typescript`, `vite`, `tailwind-css`, `local-first`, `diff-engine`, `ux-design`, `negotiation-science`, `career`, `venture-capital`
+react, typescript, vite, tailwind-css, local-first, diff-engine, ux-design, negotiation-science, career, venture-capital
 
 ---
 
