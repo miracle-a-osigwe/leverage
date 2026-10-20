@@ -4,6 +4,7 @@ import { SCENARIO_PRESETS } from './data/scenarioPresets';
 import { synthesizeDraft } from './engine/synthesisEngine';
 import { TelemetryBar } from './components/TelemetryBar';
 import { DocumentWorkspace } from './components/DocumentWorkspace';
+import { ExecutiveGuideModal } from './components/ExecutiveGuideModal';
 import { ShieldCheck, Lock, Sparkles, Scale } from 'lucide-react';
 
 export function App() {
@@ -11,6 +12,7 @@ export function App() {
   const [activeTab, setActiveTab] = useState<PillarTab>('equalizer');
   const [firmness, setFirmness] = useState<number>(85);
   const [diplomacy, setDiplomacy] = useState<number>(90);
+  const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
 
   // Active scenario preset
   const defaultPreset = SCENARIO_PRESETS.find((p) => p.persona === 'founder') || SCENARIO_PRESETS[0];
@@ -48,34 +50,30 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-alabaster flex flex-col font-sans text-ink">
-      {/* Top Telemetry & Controls Bar */}
+      {/* Top Clean Global Bar */}
       <TelemetryBar
         persona={persona}
         onPersonaChange={handlePersonaChange}
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        firmness={firmness}
-        onFirmnessChange={setFirmness}
-        diplomacy={diplomacy}
-        onDiplomacyChange={setDiplomacy}
-        leverageScore={synthesis.leverageScore}
+        onOpenGuide={() => setIsGuideOpen(true)}
       />
 
       {/* Main Workspace Body */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-6">
         {activeTab === 'equalizer' && (
-          <div className="space-y-6">
+          <div className="space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
               <div>
-                <h1 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-ink">
+                <h1 className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-ink">
                   Subtext Equalizer
                 </h1>
-                <p className="text-sm text-ink-muted mt-1 max-w-2xl font-serif italic">
-                  Strip emotional vulnerability, hedging, and unforced concessions from critical emails and messages before sending.
+                <p className="text-xs md:text-sm text-ink-muted mt-0.5 font-serif italic">
+                  Neutralize defensive hedging, hostility, and unforced concessions before sending.
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-xs font-mono text-ink-muted bg-parchment px-3 py-1.5 rounded border border-hairline self-start">
-                <Lock className="w-3.5 h-3.5 text-leverage-green" />
+              <div className="flex items-center gap-2 text-[11px] font-mono text-ink-muted bg-parchment/80 px-2.5 py-1 rounded border border-hairline self-start">
+                <Lock className="w-3 h-3 text-leverage-green" />
                 <span>Client-Side Local Session • Zero Remote Leaks</span>
               </div>
             </div>
@@ -84,6 +82,7 @@ export function App() {
               persona={persona}
               presets={SCENARIO_PRESETS}
               activePresetId={activePresetId}
+              activePreset={activePreset}
               onSelectPreset={handleSelectPreset}
               rawDraft={rawDraft}
               onDraftChange={(text) => {
@@ -92,13 +91,15 @@ export function App() {
               }}
               synthesis={synthesis}
               firmness={firmness}
+              onFirmnessChange={setFirmness}
               diplomacy={diplomacy}
+              onDiplomacyChange={setDiplomacy}
             />
           </div>
         )}
 
         {activeTab === 'objections' && (
-          <div className="p-12 text-center rounded-2xl bg-parchment-card border border-hairline my-8 shadow-subtle">
+          <div className="p-12 text-center rounded-2xl bg-parchment/60 border border-hairline my-6 shadow-subtle">
             <Scale className="w-10 h-10 text-ink mx-auto mb-3 opacity-80" />
             <h2 className="font-serif text-2xl font-bold text-ink">Objection Simulator</h2>
             <p className="text-sm text-ink-muted max-w-md mx-auto mt-2">
@@ -111,7 +112,7 @@ export function App() {
         )}
 
         {activeTab === 'clauseRadar' && (
-          <div className="p-12 text-center rounded-2xl bg-parchment-card border border-hairline my-8 shadow-subtle">
+          <div className="p-12 text-center rounded-2xl bg-parchment/60 border border-hairline my-6 shadow-subtle">
             <ShieldCheck className="w-10 h-10 text-ink mx-auto mb-3 opacity-80" />
             <h2 className="font-serif text-2xl font-bold text-ink">Clause Radar</h2>
             <p className="text-sm text-ink-muted max-w-md mx-auto mt-2">
@@ -124,8 +125,18 @@ export function App() {
         )}
       </main>
 
+      {/* Interactive Spotlight Guide Modal */}
+      <ExecutiveGuideModal
+        isOpen={isGuideOpen}
+        onClose={() => setIsGuideOpen(false)}
+        onSelectSample={() => {
+          handleSelectPreset(defaultPreset);
+          setActiveTab('equalizer');
+        }}
+      />
+
       {/* Swiss Editorial Footer */}
-      <footer className="border-t border-hairline bg-parchment/40 py-6 px-4 md:px-8 mt-12 text-xs font-mono text-ink-muted">
+      <footer className="border-t border-hairline bg-parchment/40 py-5 px-4 md:px-8 mt-10 text-xs font-mono text-ink-muted">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="font-serif font-bold text-ink text-sm">LEVERAGE</span>

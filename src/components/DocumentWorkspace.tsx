@@ -2,30 +2,38 @@ import React, { useState } from 'react';
 import { ViewMode, SynthesisResult, ScenarioPreset, Persona } from '../types';
 import { PresetSelector } from './PresetSelector';
 import { RedlineViewer } from './RedlineViewer';
-import { FileEdit, Check, Copy, SlidersHorizontal, Eye, ShieldCheck, RefreshCw } from 'lucide-react';
+import { CleanDispatchView } from './CleanDispatchView';
+import { TacticalDebriefDrawer } from './TacticalDebriefDrawer';
+import { FileEdit, Check, Copy, Eye, ShieldCheck, Sparkles, MessageSquare, Sliders } from 'lucide-react';
 
 interface DocumentWorkspaceProps {
   persona: Persona;
   presets: ScenarioPreset[];
   activePresetId: string | null;
+  activePreset: ScenarioPreset | null;
   onSelectPreset: (preset: ScenarioPreset) => void;
   rawDraft: string;
   onDraftChange: (text: string) => void;
   synthesis: SynthesisResult;
   firmness: number;
+  onFirmnessChange: (val: number) => void;
   diplomacy: number;
+  onDiplomacyChange: (val: number) => void;
 }
 
 export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
   persona,
   presets,
   activePresetId,
+  activePreset,
   onSelectPreset,
   rawDraft,
   onDraftChange,
   synthesis,
   firmness,
+  onFirmnessChange,
   diplomacy,
+  onDiplomacyChange,
 }) => {
   const [viewMode, setViewMode] = useState<ViewMode>('redline');
   const [copied, setCopied] = useState(false);
@@ -41,10 +49,23 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
     setViewMode('raw');
   };
 
+  const tacticalNotes = activePreset?.tacticalNotes || [
+    'Converts defensive hedging into firm contractual milestones.',
+    'Eliminates unforced financial and liquidity concessions.',
+    'Protects professional authority while maintaining constructive dialogue.',
+  ];
+
+  const getToneLabel = () => {
+    if (firmness >= 60 && diplomacy >= 60) return 'Firm & Diplomatic';
+    if (firmness >= 60) return 'Direct & Boundary-Enforcing';
+    if (diplomacy >= 60) return 'Strategic & Diplomatic';
+    return 'Balanced Executive';
+  };
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       {/* Scenario Presets Bar */}
-      <div className="border-b border-hairline pb-2">
+      <div data-tour="preset-scenarios" className="border-b border-hairline pb-2 transition-all">
         <PresetSelector
           presets={presets}
           persona={persona}
@@ -57,14 +78,89 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
         />
       </div>
 
+      {/* Calibration Ribbon: Dual Sliders + Tone Telemetry + Live Leverage Index */}
+      <div
+        data-tour="calibration-sliders"
+        className="p-3.5 rounded-xl bg-parchment/70 border border-hairline shadow-subtle flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all"
+      >
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-ink text-alabaster shadow-subtle">
+            <Sliders className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="text-xs font-semibold text-ink flex items-center gap-2">
+              <span>Tone Calibration Matrix</span>
+              <span className="font-mono text-[10px] uppercase px-1.5 py-0.5 rounded bg-alabaster text-ink-muted border border-hairline">
+                {getToneLabel()}
+              </span>
+            </div>
+            <p className="text-[11px] text-ink-muted">0ms Client-Side Tactical Diff Engine</p>
+          </div>
+        </div>
+
+        {/* Sliders & Real-Time Leverage Score */}
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          {/* Firmness */}
+          <div className="flex items-center gap-2.5">
+            <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
+              <span>Firmness</span>
+              <strong className="text-ink font-semibold">{firmness}%</strong>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="100"
+              value={firmness}
+              onChange={(e) => onFirmnessChange(Number(e.target.value))}
+              className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
+              title="Calibrate assertiveness and boundary enforcement"
+            />
+          </div>
+
+          {/* Diplomacy */}
+          <div className="flex items-center gap-2.5">
+            <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
+              <span>Diplomacy</span>
+              <strong className="text-ink font-semibold">{diplomacy}%</strong>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="100"
+              value={diplomacy}
+              onChange={(e) => onDiplomacyChange(Number(e.target.value))}
+              className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
+              title="Calibrate tactical tact and relationship preservation"
+            />
+          </div>
+
+          {/* Real-Time Leverage Index Badge */}
+          <div className="pl-3 border-l border-hairline flex items-center">
+            <div
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border font-mono text-xs font-bold transition-all ${
+                synthesis.leverageScore >= 80
+                  ? 'text-leverage-green border-leverage-green/40 bg-leverage-greenBg'
+                  : synthesis.leverageScore >= 50
+                  ? 'text-hazard-amber border-hazard-amber/40 bg-hazard-amberBg'
+                  : 'text-hazard-red border-hazard-red/40 bg-hazard-redBg'
+              }`}
+              title="Real-Time Leverage Index calculated from neutralized vulnerabilities"
+            >
+              <span className="text-[10px] uppercase font-sans font-normal text-ink-muted">Leverage</span>
+              <span>{synthesis.leverageScore}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* View Mode Switcher Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-parchment/70 p-2 rounded-lg border border-hairline">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-parchment/50 p-2 rounded-lg border border-hairline">
         <div className="flex items-center gap-1">
           <button
             onClick={() => setViewMode('redline')}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all ${
               viewMode === 'redline'
-                ? 'bg-alabaster-50 text-ink shadow-subtle font-semibold border border-hairline'
+                ? 'bg-alabaster text-ink shadow-subtle font-semibold border border-hairline'
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
@@ -81,7 +177,7 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
             onClick={() => setViewMode('clean')}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all ${
               viewMode === 'clean'
-                ? 'bg-alabaster-50 text-ink shadow-subtle font-semibold border border-hairline'
+                ? 'bg-alabaster text-ink shadow-subtle font-semibold border border-hairline'
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
@@ -93,7 +189,7 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
             onClick={() => setViewMode('raw')}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all ${
               viewMode === 'raw'
-                ? 'bg-alabaster-50 text-ink shadow-subtle font-semibold border border-hairline'
+                ? 'bg-alabaster text-ink shadow-subtle font-semibold border border-hairline'
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
@@ -103,10 +199,10 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
         </div>
 
         {/* Action Button: Copy Dispatch */}
-        <div className="flex items-center gap-2">
+        <div data-tour="copy-dispatch" className="flex items-center gap-2">
           <button
             onClick={handleCopy}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all border shadow-subtle ${
               copied
                 ? 'bg-leverage-greenBg text-leverage-green border-leverage-green font-semibold'
                 : 'bg-ink text-alabaster border-ink hover:bg-ink-light'
@@ -128,47 +224,77 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
         </div>
       </div>
 
-      {/* Workspace Body */}
-      {viewMode === 'redline' && (
-        <RedlineViewer
-          tokens={synthesis.redlineTokens}
-          hazards={synthesis.detectedHazards}
-          firmness={firmness}
-          diplomacy={diplomacy}
-        />
-      )}
-
-      {viewMode === 'clean' && (
-        <div className="flex flex-col gap-4">
-          <div className="p-6 md:p-8 rounded-xl bg-alabaster-50 border border-hairline shadow-subtle">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-hairline text-xs font-mono text-ink-muted">
-              <span>SEND-READY EXECUTIVE DISPATCH</span>
-              <span className="text-leverage-green font-semibold">Zero Hazards • Formatted</span>
-            </div>
-            <div className="font-serif text-lg md:text-[19px] leading-relaxed text-ink whitespace-pre-wrap">
-              {synthesis.cleanDispatch}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {viewMode === 'raw' && (
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between text-xs text-ink-muted font-mono">
-            <span>PASTE OR EDIT RAW MESSAGE DRAFT</span>
-            <span>{rawDraft.length} characters</span>
-          </div>
-          <textarea
-            value={rawDraft}
-            onChange={(e) => onDraftChange(e.target.value)}
-            placeholder="Paste your sensitive email or Slack draft here (e.g., following up with an investor, handling an aggressive client, or addressing compensation with your manager)..."
-            rows={8}
-            className="w-full p-5 rounded-xl bg-alabaster-50 border border-hairline font-serif text-base text-ink focus:outline-none focus:ring-1 focus:ring-ink focus:border-ink shadow-subtle resize-y"
-          />
-          <p className="text-xs text-ink-muted">
-            Tip: Switch back to <strong>Live Redline</strong> to instantly see detected passive-aggressive traps, hedging, and unforced concessions.
+      {/* Empty State Guard */}
+      {!rawDraft.trim() && viewMode !== 'raw' ? (
+        <div className="p-10 text-center rounded-xl bg-alabaster border border-dashed border-hairline-dark my-4 space-y-4">
+          <MessageSquare className="w-8 h-8 text-ink-muted mx-auto" />
+          <h3 className="font-serif text-lg font-bold text-ink">No Message Draft Loaded</h3>
+          <p className="text-xs text-ink-muted max-w-md mx-auto">
+            Select one of the calibrated high-stakes presets above or click "Raw Draft" to paste your sensitive communication.
           </p>
+          <div className="pt-2">
+            <button
+              onClick={() => onSelectPreset(presets[0])}
+              className="px-4 py-2 rounded-lg bg-ink text-alabaster text-xs font-medium inline-flex items-center gap-1.5 hover:bg-ink-light"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-hazard-amber" />
+              Load "{presets[0].title}"
+            </button>
+          </div>
         </div>
+      ) : (
+        <>
+          {/* Workspace Body: Redline Mode */}
+          {viewMode === 'redline' && (
+            <div data-tour="redline-canvas">
+              <RedlineViewer
+                tokens={synthesis.redlineTokens}
+                hazards={synthesis.detectedHazards}
+                firmness={firmness}
+                diplomacy={diplomacy}
+              />
+            </div>
+          )}
+
+          {/* Workspace Body: Clean Dispatch Mode */}
+          {viewMode === 'clean' && (
+            <CleanDispatchView
+              dispatchText={synthesis.cleanDispatch}
+              firmness={firmness}
+              diplomacy={diplomacy}
+              leverageScore={synthesis.leverageScore}
+            />
+          )}
+
+          {/* Workspace Body: Raw Editor Mode */}
+          {viewMode === 'raw' && (
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between text-xs text-ink-muted font-mono">
+                <span>PASTE OR EDIT RAW MESSAGE DRAFT</span>
+                <span>{rawDraft.length} characters</span>
+              </div>
+              <textarea
+                value={rawDraft}
+                onChange={(e) => onDraftChange(e.target.value)}
+                placeholder="Paste your sensitive email or Slack draft here (e.g., following up with an investor, handling an aggressive client, or addressing compensation with your manager)..."
+                rows={8}
+                className="w-full p-5 rounded-xl bg-alabaster border border-hairline font-serif text-base text-ink focus:outline-none focus:ring-1 focus:ring-ink focus:border-ink shadow-subtle resize-y"
+              />
+              <p className="text-xs text-ink-muted">
+                Tip: Switch back to <strong>Live Redline</strong> to instantly see detected passive-aggressive traps, hedging, and unforced concessions.
+              </p>
+            </div>
+          )}
+
+          {/* Tactical Debrief Drawer */}
+          <div data-tour="tactical-debrief">
+            <TacticalDebriefDrawer
+              tacticalNotes={tacticalNotes}
+              hazards={synthesis.detectedHazards}
+              leverageScore={synthesis.leverageScore}
+            />
+          </div>
+        </>
       )}
     </div>
   );

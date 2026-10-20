@@ -9,7 +9,7 @@ Build mode: learn mode
 
 ## Slices
 
-- [ ] **1. Project Scaffold, Swiss Editorial Theme & Interactive Subtext Equalizer (The Kernel)**
+- [x] **1. Project Scaffold, Swiss Editorial Theme & Interactive Subtext Equalizer (The Kernel)**
   Becomes usable: A running Vite + React + Tailwind app in the Swiss Editorial alabaster theme with telemetry header, persona switch (Founder/Employee), preset chips, and the flagship Subtext Equalizer. Moving Firmness and Diplomacy sliders instantly recalculates the Live Redline (crimson strikethroughs + sage insertions) and updates the Leverage Index in real time.
   Why now: Bootstraps the application and proves the core kernel on the very first slice — scaffold, UI tokens, diff engine, reactive sliders — so every later slice has somewhere solid to land.
   PRD ref: `prd.md > Features and Behavior (1. Subtext Equalizer & Live Redline)`, `prd.md > Screens and Layout`
@@ -19,7 +19,7 @@ Build mode: learn mode
   Learner check: Open http://localhost:5173, click "Founder: Late Investor Wire", move the Firmness and Diplomacy sliders, and verify that the redline strikethroughs, insertions, and Leverage Index update smoothly.
   Commit: `Add project scaffold and interactive Subtext Equalizer with live redline`
 
-- [ ] **2. Clean Dispatch View, Tactical Debrief Drawer & 1-Click Clipboard Export**
+- [x] **2. Clean Dispatch View, Tactical Debrief Drawer & 1-Click Clipboard Export**
   Becomes usable: ViewSwitcher toggles between Live Redline and Clean Dispatch View, collapsible Tactical Debrief drawer explains the strategic negotiation rationale, and 1-click Copy Dispatch provides animated visual feedback.
   Why now: Closes the primary user loop from analysis to send-ready export, fulfilling the complete journey for the flagship scenario.
   PRD ref: `prd.md > The Core Journey (steps 5-7)`, `prd.md > States and Boundaries`
@@ -51,7 +51,7 @@ Build mode: learn mode
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — Slice 1 Subtext Equalizer and live redline verified
+- [x] Early usable behavior explored — Slice 1 Subtext Equalizer and live redline verified
 - [ ] Final kick-the-tires exploration and feedback completed
 
 ## Final Review

@@ -22,3 +22,9 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
+# Agent skills & tooling
+.agents/
+.claude/
+agent/
+skills-lock.json
+
