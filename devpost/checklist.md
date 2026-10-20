@@ -29,7 +29,7 @@ Build mode: learn mode
   Learner check: Click "Clean Dispatch", click "Copy Dispatch", verify the copied text in your paste buffer, and expand the Tactical Debrief drawer to view the rationale.
   Commit: `Add Clean Dispatch view, tactical debrief drawer, and clipboard export`
 
-- [ ] **3. Objection Simulator with Adversarial Counter-Frames**
+- [x] **3. Objection Simulator with Adversarial Counter-Frames**
   Becomes usable: Pillar 2 tab active with adversarial pushback cards (Founder valuation/burn rate; Employee non-negotiable salary cap) and 3 structured counter-frames (Direct Answer, Pivot Frame, High Ground Question).
   Why now: Proves the second pillar of high-stakes preparation, expanding user capabilities without complicating the core state.
   PRD ref: `prd.md > Features and Behavior (2. Objection Simulator)`

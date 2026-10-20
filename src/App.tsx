@@ -5,7 +5,8 @@ import { synthesizeDraft } from './engine/synthesisEngine';
 import { TelemetryBar } from './components/TelemetryBar';
 import { DocumentWorkspace } from './components/DocumentWorkspace';
 import { ExecutiveGuideModal } from './components/ExecutiveGuideModal';
-import { ShieldCheck, Lock, Sparkles, Scale } from 'lucide-react';
+import { ObjectionSimulator } from './components/ObjectionSimulator';
+import { Lock, ShieldCheck } from 'lucide-react';
 
 export function App() {
   const [persona, setPersona] = useState<Persona>('founder');
@@ -99,16 +100,10 @@ export function App() {
         )}
 
         {activeTab === 'objections' && (
-          <div className="p-12 text-center rounded-2xl bg-parchment/60 border border-hairline my-6 shadow-subtle">
-            <Scale className="w-10 h-10 text-ink mx-auto mb-3 opacity-80" />
-            <h2 className="font-serif text-2xl font-bold text-ink">Objection Simulator</h2>
-            <p className="text-sm text-ink-muted max-w-md mx-auto mt-2">
-              Pillar 2: Stress-test adversarial pushback and rehearse 3-part counter-frames (Direct Answer, Pivot, High Ground).
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment text-xs font-mono text-ink-muted border border-hairline">
-              <span>Slice 3 in build schedule</span>
-            </div>
-          </div>
+          <ObjectionSimulator
+            currentPersona={persona}
+            onPersonaChange={handlePersonaChange}
+          />
         )}
 
         {activeTab === 'clauseRadar' && (
