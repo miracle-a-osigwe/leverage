@@ -39,7 +39,7 @@ Build mode: learn mode
   Learner check: Click the "Objection Simulator" tab, toggle between Founder and Employee personas, and confirm the adversary objection and 3 counter-frames display clearly.
   Commit: `Add Objection Simulator with adversarial meeting counter-frames`
 
-- [ ] **4. Clause Radar Contract Gotcha Scanner & Counter-Clause Generator**
+- [x] **4. Clause Radar Contract Gotcha Scanner & Counter-Clause Generator**
   Becomes usable: Pillar 3 tab active with contract clause snippet scanner, Red/Amber/Green hazard flags, and 1-click equitable counter-clauses with copy actions.
   Why now: Completes the full 3-pillar product vision for the 1st-place submission, delivering a comprehensive high-stakes negotiation copilot.
   PRD ref: `prd.md > Features and Behavior (3. Clause Radar)`

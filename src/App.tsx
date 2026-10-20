@@ -6,7 +6,8 @@ import { TelemetryBar } from './components/TelemetryBar';
 import { DocumentWorkspace } from './components/DocumentWorkspace';
 import { ExecutiveGuideModal } from './components/ExecutiveGuideModal';
 import { ObjectionSimulator } from './components/ObjectionSimulator';
-import { Lock, ShieldCheck } from 'lucide-react';
+import { ClauseRadar } from './components/ClauseRadar';
+import { Lock } from 'lucide-react';
 
 export function App() {
   const [persona, setPersona] = useState<Persona>('founder');
@@ -107,16 +108,10 @@ export function App() {
         )}
 
         {activeTab === 'clauseRadar' && (
-          <div className="p-12 text-center rounded-2xl bg-parchment/60 border border-hairline my-6 shadow-subtle">
-            <ShieldCheck className="w-10 h-10 text-ink mx-auto mb-3 opacity-80" />
-            <h2 className="font-serif text-2xl font-bold text-ink">Clause Radar</h2>
-            <p className="text-sm text-ink-muted max-w-md mx-auto mt-2">
-              Pillar 3: Contract Gotcha Scanner identifying vesting traps, non-competes, and offering 1-click counter-clauses.
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment text-xs font-mono text-ink-muted border border-hairline">
-              <span>Slice 4 in build schedule</span>
-            </div>
-          </div>
+          <ClauseRadar
+            currentPersona={persona}
+            onPersonaChange={handlePersonaChange}
+          />
         )}
       </main>
 
