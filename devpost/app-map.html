@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leverage — App Architecture Map & Takeaway</title>
+  <style>
+    :root {
+      --bg: #FBFBF9;
+      --surface: #FFFFFF;
+      --ink: #121212;
+      --ink-muted: #666660;
+      --hairline: #E5E5E0;
+      --accent-crimson: #DC2626;
+      --accent-sage: #15803D;
+      --accent-blue: #1E3A8A;
+      --parchment: #F4F4F0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    header {
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: var(--parchment);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    p.lead {
+      color: var(--ink-muted);
+      font-size: 15px;
+    }
+    h2 {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 19px;
+      font-weight: 700;
+      margin: 28px 0 14px 0;
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 6px;
+    }
+    .diagram-card {
+      background: var(--parchment);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+    .route-stop {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      background: #FAFAFA;
+    }
+    .route-title {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+    }
+    .route-desc {
+      font-size: 13px;
+      color: var(--ink);
+    }
+    ul {
+      margin-left: 20px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    li { margin-bottom: 8px; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: var(--parchment);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+      border: 1px solid var(--hairline);
+    }
+    .callout {
+      border-left: 3px solid var(--accent-sage);
+      background: #F0FDF4;
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 18px 0;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid var(--hairline);
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Architecture & Reference Map</div>
+      <h1>LEVERAGE</h1>
+      <p class="lead">High-Stakes Career & Venture Copilot — System Anatomy & Reusable Practices</p>
+    </header>
+
+    <section>
+      <h2>System Overview</h2>
+      <p>
+        <strong>Leverage</strong> balances two distinct computational engines to solve the tension between zero-latency responsiveness and infinite generative reasoning:
+      </p>
+      <ul>
+        <li><strong>Deterministic Synthesis Kernel:</strong> A mathematical matrix executing sub-millisecond syntactic transformations for real-time slider controls (Firmness × Diplomacy).</li>
+        <li><strong>Google Gemini 2.5 Flash Engine:</strong> Client-side structured AI sparring for unscripted adversarial meeting pushback and arbitrary contract clause risk audits.</li>
+      </ul>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 740 180" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <!-- User Input Box -->
+          <rect x="10" y="55" width="160" height="70" rx="6" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1.5"/>
+          <text x="25" y="85" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#121212">User Inputs</text>
+          <text x="25" y="105" font-family="monospace" font-size="10" fill="#666660">Drafts / Sliders / Clauses</text>
+
+          <!-- Arrow 1 -->
+          <line x1="170" y1="90" x2="230" y2="90" stroke="#121212" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <!-- Dual Engine Split -->
+          <rect x="230" y="15" width="230" height="60" rx="6" fill="#F0FDF4" stroke="#15803D" stroke-width="1.5"/>
+          <text x="245" y="40" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#15803D">0ms Deterministic Kernel</text>
+          <text x="245" y="60" font-family="monospace" font-size="10" fill="#666660">synthesisEngine.ts (Live Diffs)</text>
+
+          <rect x="230" y="105" width="230" height="60" rx="6" fill="#EFF6FF" stroke="#1E3A8A" stroke-width="1.5"/>
+          <text x="245" y="130" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E3A8A">Gemini 2.5 Flash Engine</text>
+          <text x="245" y="150" font-family="monospace" font-size="10" fill="#666660">geminiService.ts (JSON Schemas)</text>
+
+          <!-- Arrow 2 -->
+          <line x1="460" y1="45" x2="520" y2="70" stroke="#121212" stroke-width="1.5"/>
+          <line x1="460" y1="135" x2="520" y2="105" stroke="#121212" stroke-width="1.5"/>
+
+          <!-- Output Box -->
+          <rect x="520" y="55" width="200" height="70" rx="6" fill="#FFFFFF" stroke="#E5E5E0" stroke-width="1.5"/>
+          <text x="535" y="80" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#121212">Tactical Outputs</text>
+          <text x="535" y="98" font-family="monospace" font-size="10" fill="#DC2626">• Live Redline Strikethroughs</text>
+          <text x="535" y="114" font-family="monospace" font-size="10" fill="#15803D">• 3 Counter-Frames & Radars</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>Architecture & Reference Code Route</h2>
+      
+      <div class="route-stop">
+        <div class="route-title">1. src/engine/synthesisEngine.ts</div>
+        <div class="route-desc">
+          <strong>The Tactical Kernel:</strong> Contains pure mathematical mapping functions that take <code>(rawDraft, firmness, diplomacy, preset)</code> and generate token-level redline diff arrays (strikethroughs vs. insertions) and compute the 0–100 Leverage Index with zero network delay.
+        </div>
+      </div>
+
+      <div class="route-stop">
+        <div class="route-title">2. src/services/geminiService.ts</div>
+        <div class="route-desc">
+          <strong>Generative Intelligence Layer:</strong> Connects directly to Google's <code>gemini-2.5-flash</code> endpoint via client-side fetch with structured JSON response schemas for <code>generateCustomObjectionCounters()</code> and <code>auditCustomClause()</code>. Also handles localStorage API key persistence and offline fallback simulation.
+        </div>
+      </div>
+
+      <div class="route-stop">
+        <div class="route-title">3. src/components/DocumentWorkspace.tsx & App.tsx</div>
+        <div class="route-desc">
+          <strong>Reactive Workspace Orchestrator:</strong> Manages persona state (Founder vs. Career), preset loading, view switching between Live Redline and Clean Dispatch, and coordinates the collapsible Tactical Debrief drawer.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>To Change This, Start Here</h2>
+      <ul>
+        <li><strong>Add a new scenario preset:</strong> Edit <code>src/data/scenarioPresets.ts</code> to define incoming draft text and high-leverage counter-transformations.</li>
+        <li><strong>Tune the negotiation scoring formula:</strong> Inspect <code>calculateLeverageScore()</code> in <code>src/engine/synthesisEngine.ts</code> to calibrate posture metrics.</li>
+        <li><strong>Expand contract hazard detection patterns:</strong> Add regex checks and curated gotchas in <code>src/data/clausePresets.ts</code>.</li>
+        <li><strong>Adjust AI temperature or prompts:</strong> Modify system prompt definitions in <code>src/services/geminiService.ts</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>A Reusable Practice: The Dual-Engine Model</h2>
+      <div class="callout">
+        <strong>Takeaway for Future AI Projects:</strong> Never force high-frequency interactive UI controls (like sliders or typing inputs) to wait on an asynchronous LLM request. By building a local deterministic engine for immediate tactile feedback and reserving Google Gemini 2.5 Flash for unscripted adversarial reasoning, the user experience feels instantaneous while remaining intellectually formidable.
+      </div>
+    </section>
+
+    <footer>
+      <span>Run locally: <code>npm run dev</code></span>
+      <span>Build check: <code>npm run build</code></span>
+      <span>Vite + React 19 + TypeScript + Gemini 2.5 Flash</span>
+    </footer>
+  </div>
+</body>
+</html>

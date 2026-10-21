@@ -52,22 +52,25 @@ Build mode: learn mode
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — Slice 1 Subtext Equalizer and live redline verified
-- [ ] Final kick-the-tires exploration and feedback completed
+- [x] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — dual-engine AI architecture practice
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: [what actually happened; real document/test/code references; unfinished work if interrupted]
-Route and stops: [actual paths and symbols; guided stops completed, or reference-only route]
-Edit outcome: [tried/kept/reverted/declined/not applicable; verification if changed]
-Reflection: [offered/answered/declined/already covered — personal answer belongs only in the ignored profile]
-Activity mode: [live app and editor, explicit static fallback, focused alternative, prior practice, or recap]
+Activity and evidence: All 4 slices built and verified mechanically (`npm run build` passing cleanly) and interactively. Added Google Gemini 2.5 Flash client-side integration for unscripted adversarial pushback sparring and arbitrary contract clause risk audits. Added Swiss Editorial AISettingsModal with localStorage key persistence and mock demo fallback. Generated `devpost/app-map.html`.
+Route and stops: `src/engine/synthesisEngine.ts`, `src/services/geminiService.ts`, `src/components/DocumentWorkspace.tsx` and `src/App.tsx`.
+Edit outcome: Kept; verified via Vite production bundle and clean dev server reload.
+Reflection: Dual-engine architecture: combining 0ms local deterministic state with asynchronous LLM sparring for zero-latency UI responsiveness.
+Activity mode: Live app and editor, standalone app map.
 
 ## Revisions
+
+- Revision 1: Added Google Gemini 2.5 Flash AI integration to Objection Simulator (`src/components/ObjectionSimulator.tsx`) and Clause Radar (`src/components/ClauseRadar.tsx`) with client-side direct calls, structured JSON outputs, and fallback demo simulations.
+- Revision 2: Added `src/components/AISettingsModal.tsx` and header telemetry trigger to allow judges and users to supply their own Gemini API keys directly in the browser with full privacy.
