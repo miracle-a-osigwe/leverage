@@ -7,6 +7,8 @@ import { DocumentWorkspace } from './components/DocumentWorkspace';
 import { ExecutiveGuideModal } from './components/ExecutiveGuideModal';
 import { ObjectionSimulator } from './components/ObjectionSimulator';
 import { ClauseRadar } from './components/ClauseRadar';
+import { AISettingsModal } from './components/AISettingsModal';
+import { hasGeminiApiKey } from './services/geminiService';
 import { Lock } from 'lucide-react';
 
 export function App() {
@@ -15,6 +17,8 @@ export function App() {
   const [firmness, setFirmness] = useState<number>(85);
   const [diplomacy, setDiplomacy] = useState<number>(90);
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
+  const [isAISettingsOpen, setIsAISettingsOpen] = useState<boolean>(false);
+  const [isAIConfigured, setIsAIConfigured] = useState<boolean>(() => hasGeminiApiKey());
 
   // Active scenario preset
   const defaultPreset = SCENARIO_PRESETS.find((p) => p.persona === 'founder') || SCENARIO_PRESETS[0];
@@ -59,6 +63,8 @@ export function App() {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         onOpenGuide={() => setIsGuideOpen(true)}
+        onOpenAISettings={() => setIsAISettingsOpen(true)}
+        isAIConfigured={isAIConfigured}
       />
 
       {/* Main Workspace Body */}
@@ -122,6 +128,15 @@ export function App() {
         onSelectSample={() => {
           handleSelectPreset(defaultPreset);
           setActiveTab('equalizer');
+        }}
+      />
+
+      {/* Gemini AI Settings Modal */}
+      <AISettingsModal
+        isOpen={isAISettingsOpen}
+        onClose={() => setIsAISettingsOpen(false)}
+        onKeyUpdated={() => {
+          setIsAIConfigured(hasGeminiApiKey());
         }}
       />
 

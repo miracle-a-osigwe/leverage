@@ -1,6 +1,6 @@
 import React from 'react';
 import { Persona, PillarTab } from '../types';
-import { Compass, Briefcase, UserCheck } from 'lucide-react';
+import { Compass, Briefcase, UserCheck, Sparkles } from 'lucide-react';
 
 interface TelemetryBarProps {
   persona: Persona;
@@ -8,6 +8,8 @@ interface TelemetryBarProps {
   activeTab: PillarTab;
   onTabChange: (tab: PillarTab) => void;
   onOpenGuide: () => void;
+  onOpenAISettings: () => void;
+  isAIConfigured: boolean;
 }
 
 export const TelemetryBar: React.FC<TelemetryBarProps> = ({
@@ -16,6 +18,8 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
   activeTab,
   onTabChange,
   onOpenGuide,
+  onOpenAISettings,
+  isAIConfigured,
 }) => {
   return (
     <header className="border-b border-hairline bg-alabaster/95 backdrop-blur-md sticky top-0 z-40 px-4 md:px-8 py-3">
@@ -97,6 +101,23 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
               <span className="hidden sm:inline">Career</span>
             </button>
           </div>
+
+          {/* AI Engine Status & Key Modal Trigger */}
+          <button
+            type="button"
+            onClick={onOpenAISettings}
+            className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border transition-all cursor-pointer ${
+              isAIConfigured
+                ? 'bg-purple-50 text-purple-900 border-purple-300 hover:bg-purple-100'
+                : 'bg-parchment text-[#525252] border-hairline hover:text-[#121212] hover:bg-[#FAF9F6]'
+            }`}
+            title="Configure Google Gemini 2.5 Flash API Key"
+          >
+            <Sparkles className={`w-3.5 h-3.5 ${isAIConfigured ? 'text-purple-600 animate-pulse' : 'text-[#737373]'}`} />
+            <span className="hidden sm:inline font-mono text-[11px] font-semibold">
+              {isAIConfigured ? 'Gemini 2.5' : 'AI Setup'}
+            </span>
+          </button>
 
           {/* Guide Me Button */}
           <button
