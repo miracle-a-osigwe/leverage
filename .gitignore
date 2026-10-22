@@ -28,3 +28,6 @@ Thumbs.db
 agent/
 skills-lock.json
 
+# Local preview dashboard
+preview/
+
