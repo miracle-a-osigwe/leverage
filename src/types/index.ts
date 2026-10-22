@@ -62,10 +62,20 @@ export interface ClauseScenario {
   equitableCounterClause: string;
 }
 
+export interface BaselinePosture {
+  firmness: number;        // 0-100
+  diplomacy: number;       // 0-100
+  leverageScore: number;   // 0-100
+  riskCategory: 'critical-concession' | 'hostile-friction' | 'passive-deference' | 'balanced-viable';
+  diagnosisLabel: string;  // e.g. "Severe Concession Leak", "Emotional / Hostile Friction", "Passive Hedging"
+  summary: string;         // Diagnostic explanation of vulnerabilities in the raw draft
+}
+
 export interface SynthesisResult {
   redlineTokens: RedlineToken[];
   cleanDispatch: string;
   detectedHazards: HazardItem[];
+  baselinePosture: BaselinePosture;
   leverageScore: number; // 0-100
   firmnessScore: number;
   diplomacyScore: number;

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Persona, PillarTab, ScenarioPreset } from './types';
 import { SCENARIO_PRESETS } from './data/scenarioPresets';
-import { synthesizeDraft } from './engine/synthesisEngine';
+import { synthesizeDraft, computeRawBaseline } from './engine/synthesisEngine';
 import { TelemetryBar } from './components/TelemetryBar';
 import { DocumentWorkspace } from './components/DocumentWorkspace';
 import { ExecutiveGuideModal } from './components/ExecutiveGuideModal';
@@ -14,16 +14,18 @@ import { Lock } from 'lucide-react';
 export function App() {
   const [persona, setPersona] = useState<Persona>('founder');
   const [activeTab, setActiveTab] = useState<PillarTab>('equalizer');
-  const [firmness, setFirmness] = useState<number>(85);
-  const [diplomacy, setDiplomacy] = useState<number>(90);
-  const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
-  const [isAISettingsOpen, setIsAISettingsOpen] = useState<boolean>(false);
-  const [isAIConfigured, setIsAIConfigured] = useState<boolean>(() => hasGeminiApiKey());
 
   // Active scenario preset
   const defaultPreset = SCENARIO_PRESETS.find((p) => p.persona === 'founder') || SCENARIO_PRESETS[0];
+  const initialBaseline = computeRawBaseline(defaultPreset.rawDraft, defaultPreset.hazards, defaultPreset);
+
   const [activePresetId, setActivePresetId] = useState<string | null>(defaultPreset.id);
   const [rawDraft, setRawDraft] = useState<string>(defaultPreset.rawDraft);
+  const [firmness, setFirmness] = useState<number>(initialBaseline.firmness);
+  const [diplomacy, setDiplomacy] = useState<number>(initialBaseline.diplomacy);
+  const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
+  const [isAISettingsOpen, setIsAISettingsOpen] = useState<boolean>(false);
+  const [isAIConfigured, setIsAIConfigured] = useState<boolean>(() => hasGeminiApiKey());
 
   // Handle persona switch
   const handlePersonaChange = (newPersona: Persona) => {
@@ -32,9 +34,14 @@ export function App() {
     if (firstMatchingPreset) {
       setActivePresetId(firstMatchingPreset.id);
       setRawDraft(firstMatchingPreset.rawDraft);
+      const baseline = computeRawBaseline(firstMatchingPreset.rawDraft, firstMatchingPreset.hazards, firstMatchingPreset);
+      setFirmness(baseline.firmness);
+      setDiplomacy(baseline.diplomacy);
     } else {
       setActivePresetId(null);
       setRawDraft('');
+      setFirmness(50);
+      setDiplomacy(50);
     }
   };
 
@@ -42,6 +49,9 @@ export function App() {
   const handleSelectPreset = (preset: ScenarioPreset) => {
     setActivePresetId(preset.id);
     setRawDraft(preset.rawDraft);
+    const baseline = computeRawBaseline(preset.rawDraft, preset.hazards, preset);
+    setFirmness(baseline.firmness);
+    setDiplomacy(baseline.diplomacy);
   };
 
   // Active preset object

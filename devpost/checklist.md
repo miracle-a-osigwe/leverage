@@ -74,3 +74,4 @@ Activity mode: Live app and editor, standalone app map.
 
 - Revision 1: Added Google Gemini 3.5 Flash AI integration to Objection Simulator (`src/components/ObjectionSimulator.tsx`) and Clause Radar (`src/components/ClauseRadar.tsx`) with client-side direct calls, structured JSON outputs, and fallback demo simulations.
 - Revision 2: Added `src/components/AISettingsModal.tsx` and header telemetry trigger to allow judges and users to supply their own Gemini API keys directly in the browser with full privacy.
+- Revision 3: Added dynamic linguistic raw baseline calibration engine (`computeRawBaseline` in `src/engine/synthesisEngine.ts`) to compute unique baseline firmness, diplomacy, and leverage scores across any scenario preset or custom user text before Leverage transformations, with live delta telemetry, baseline diagnostic summaries, and 1-click Auto-Equalize in `src/components/DocumentWorkspace.tsx`.

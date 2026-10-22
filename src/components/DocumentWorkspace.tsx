@@ -4,7 +4,7 @@ import { PresetSelector } from './PresetSelector';
 import { RedlineViewer } from './RedlineViewer';
 import { CleanDispatchView } from './CleanDispatchView';
 import { TacticalDebriefDrawer } from './TacticalDebriefDrawer';
-import { FileEdit, Check, Copy, Eye, ShieldCheck, Sparkles, MessageSquare, Sliders } from 'lucide-react';
+import { FileEdit, Check, Copy, Eye, ShieldCheck, Sparkles, MessageSquare, Sliders, RotateCcw, Zap, ArrowRight, TrendingUp } from 'lucide-react';
 
 interface DocumentWorkspaceProps {
   persona: Persona;
@@ -55,6 +55,19 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
     'Protects professional authority while maintaining constructive dialogue.',
   ];
 
+  const baseline = synthesis.baselinePosture;
+  const leverageLift = synthesis.leverageScore - baseline.leverageScore;
+
+  const handleAutoEqualize = () => {
+    onFirmnessChange(85);
+    onDiplomacyChange(90);
+  };
+
+  const handleResetToBaseline = () => {
+    onFirmnessChange(baseline.firmness);
+    onDiplomacyChange(baseline.diplomacy);
+  };
+
   const getToneLabel = () => {
     if (firmness >= 60 && diplomacy >= 60) return 'Firm & Diplomatic';
     if (firmness >= 60) return 'Direct & Boundary-Enforcing';
@@ -81,61 +94,62 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
       {/* Calibration Ribbon: Dual Sliders + Tone Telemetry + Live Leverage Index */}
       <div
         data-tour="calibration-sliders"
-        className="p-3.5 rounded-xl bg-parchment/70 border border-hairline shadow-subtle flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all"
+        className="p-3.5 rounded-xl bg-parchment/70 border border-hairline shadow-subtle flex flex-col gap-3 transition-all"
       >
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-ink text-alabaster shadow-subtle">
-            <Sliders className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-xs font-semibold text-ink flex items-center gap-2">
-              <span>Tone Calibration Matrix</span>
-              <span className="font-mono text-[10px] uppercase px-1.5 py-0.5 rounded bg-alabaster text-ink-muted border border-hairline">
-                {getToneLabel()}
-              </span>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-ink text-alabaster shadow-subtle">
+              <Sliders className="w-4 h-4" />
             </div>
-            <p className="text-[11px] text-ink-muted">0ms Client-Side Tactical Diff Engine</p>
-          </div>
-        </div>
-
-        {/* Sliders & Real-Time Leverage Score */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-          {/* Firmness */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
-              <span>Firmness</span>
-              <strong className="text-ink font-semibold">{firmness}%</strong>
+            <div>
+              <div className="text-xs font-semibold text-ink flex items-center gap-2">
+                <span>Tone Calibration Matrix</span>
+                <span className="font-mono text-[10px] uppercase px-1.5 py-0.5 rounded bg-alabaster text-ink-muted border border-hairline">
+                  {getToneLabel()}
+                </span>
+              </div>
+              <p className="text-[11px] text-ink-muted">0ms Client-Side Tactical Diff Engine</p>
             </div>
-            <input
-              type="range"
-              min="10"
-              max="100"
-              value={firmness}
-              onChange={(e) => onFirmnessChange(Number(e.target.value))}
-              className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
-              title="Calibrate assertiveness and boundary enforcement"
-            />
           </div>
 
-          {/* Diplomacy */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
-              <span>Diplomacy</span>
-              <strong className="text-ink font-semibold">{diplomacy}%</strong>
+          {/* Dynamic Baseline vs Transformed Posture Telemetry */}
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            {/* Raw Baseline Badge */}
+            <div
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-alabaster border border-hairline font-mono text-[11px]"
+              title={`Raw Baseline Posture: ${baseline.firmness}% Firmness, ${baseline.diplomacy}% Diplomacy`}
+            >
+              <span className="text-ink-muted font-sans text-[10px] uppercase">Raw Baseline</span>
+              <strong className={baseline.leverageScore < 40 ? 'text-hazard-red font-bold' : 'text-hazard-amber font-bold'}>
+                {baseline.leverageScore}%
+              </strong>
+              <span className="text-ink-muted text-[10px] hidden sm:inline">({baseline.diagnosisLabel})</span>
             </div>
-            <input
-              type="range"
-              min="10"
-              max="100"
-              value={diplomacy}
-              onChange={(e) => onDiplomacyChange(Number(e.target.value))}
-              className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
-              title="Calibrate tactical tact and relationship preservation"
-            />
-          </div>
 
-          {/* Real-Time Leverage Index Badge */}
-          <div className="pl-3 border-l border-hairline flex items-center">
+            <ArrowRight className="w-3 h-3 text-ink-muted/50 hidden sm:inline" />
+
+            {/* Quick Action: Auto-Equalize vs Reset */}
+            {leverageLift > 4 ? (
+              <button
+                onClick={handleResetToBaseline}
+                className="flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-mono text-ink-muted hover:text-ink hover:bg-alabaster transition-all border border-hairline"
+                title="Reset sliders back to raw draft baseline"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Reset Baseline ({baseline.firmness}% / {baseline.diplomacy}%)</span>
+              </button>
+            ) : (
+              <button
+                onClick={handleAutoEqualize}
+                className="flex items-center gap-1.5 px-3 py-1 rounded text-[11px] font-mono font-medium bg-ink text-alabaster hover:bg-ink-muted transition-all shadow-subtle"
+                title="Instantly calibrate sliders to optimal executive command"
+              >
+                <Zap className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                <span>Auto-Equalize Posture</span>
+              </button>
+            )}
+
+            {/* Transformed Leverage Badge */}
             <div
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border font-mono text-xs font-bold transition-all ${
                 synthesis.leverageScore >= 80
@@ -144,10 +158,61 @@ export const DocumentWorkspace: React.FC<DocumentWorkspaceProps> = ({
                   ? 'text-hazard-amber border-hazard-amber/40 bg-hazard-amberBg'
                   : 'text-hazard-red border-hazard-red/40 bg-hazard-redBg'
               }`}
-              title="Real-Time Leverage Index calculated from neutralized vulnerabilities"
+              title="Real-Time Transformed Leverage Index computed from active sliders"
             >
               <span className="text-[10px] uppercase font-sans font-normal text-ink-muted">Leverage</span>
               <span>{synthesis.leverageScore}%</span>
+              {leverageLift > 0 && (
+                <span className="text-[10px] font-normal text-leverage-green ml-0.5">
+                  (+{leverageLift}%)
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Sliders Bar + Baseline Diagnostic Summary */}
+        <div className="pt-2.5 border-t border-hairline/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-[11px] text-ink-muted italic">
+            <span className="font-mono not-italic font-semibold text-ink uppercase text-[10px] px-1.5 py-0.5 rounded bg-alabaster border border-hairline">
+              Diagnosis
+            </span>
+            <span className="truncate max-w-sm lg:max-w-md">{baseline.summary}</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            {/* Firmness */}
+            <div className="flex items-center gap-2">
+              <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
+                <span>Firmness</span>
+                <strong className="text-ink font-semibold">{firmness}%</strong>
+              </div>
+              <input
+                type="range"
+                min="10"
+                max="100"
+                value={firmness}
+                onChange={(e) => onFirmnessChange(Number(e.target.value))}
+                className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
+                title="Calibrate assertiveness and boundary enforcement"
+              />
+            </div>
+
+            {/* Diplomacy */}
+            <div className="flex items-center gap-2">
+              <div className="w-20 text-[11px] font-mono text-ink-muted flex justify-between">
+                <span>Diplomacy</span>
+                <strong className="text-ink font-semibold">{diplomacy}%</strong>
+              </div>
+              <input
+                type="range"
+                min="10"
+                max="100"
+                value={diplomacy}
+                onChange={(e) => onDiplomacyChange(Number(e.target.value))}
+                className="w-24 sm:w-28 h-1.5 bg-hairline rounded-lg appearance-none cursor-pointer accent-ink"
+                title="Calibrate tactical tact and relationship preservation"
+              />
             </div>
           </div>
         </div>
