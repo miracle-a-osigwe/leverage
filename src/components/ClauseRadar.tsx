@@ -287,7 +287,7 @@ export const ClauseRadar: React.FC<ClauseRadarProps> = ({
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
-                {hasGeminiApiKey() ? 'Gemini 2.5 Active' : 'Demo Evaluation Engine'}
+                {hasGeminiApiKey() ? 'Gemini 3.5 Active' : 'Demo Evaluation Engine'}
               </span>
             </div>
           </div>

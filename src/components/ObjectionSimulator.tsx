@@ -145,7 +145,7 @@ export const ObjectionSimulator: React.FC<ObjectionSimulatorProps> = ({
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-purple-950 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                Spar with Gemini 2.5 Flash on ANY Objection
+                Spar with Gemini 3.5 Flash on ANY Objection
               </span>
               <span className="text-[10px] font-mono text-purple-700 bg-white px-2 py-0.5 rounded border border-purple-200">
                 {hasGeminiApiKey() ? 'Live Gemini Engine' : 'Demo Evaluation Mode'}
@@ -249,7 +249,7 @@ export const ObjectionSimulator: React.FC<ObjectionSimulatorProps> = ({
             </span>
           </div>
           <span className="text-[11px] font-mono text-[#A3A3A3]">
-            {isAICustomMode && aiResult ? 'Google Gemini 2.5 Flash' : 'Meeting Pressure Test'}
+            {isAICustomMode && aiResult ? 'Google Gemini 3.5 Flash' : 'Meeting Pressure Test'}
           </span>
         </div>
 

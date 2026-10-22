@@ -68,7 +68,7 @@ export const AISettingsModal: React.FC<AISettingsModalProps> = ({
             <h2 className="text-base font-semibold text-[#121212] flex items-center gap-2">
               Google Gemini AI Integration
               <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
-                2.5 Flash
+                3.5 Flash
               </span>
             </h2>
             <p className="text-xs text-[#737373] mt-0.5">
@@ -85,7 +85,7 @@ export const AISettingsModal: React.FC<AISettingsModalProps> = ({
                 <CheckCircle2 className="w-4 h-4 text-sage-600 shrink-0" />
                 <div>
                   <span className="font-semibold text-[#121212] block">AI Engine: Connected</span>
-                  <span className="text-[#737373] text-[11px]">Active model: Google Gemini 2.5 Flash</span>
+                  <span className="text-[#737373] text-[11px]">Active model: Google Gemini 3.5 Flash</span>
                 </div>
               </>
             ) : (

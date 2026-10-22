@@ -111,11 +111,11 @@ export const TelemetryBar: React.FC<TelemetryBarProps> = ({
                 ? 'bg-purple-50 text-purple-900 border-purple-300 hover:bg-purple-100'
                 : 'bg-parchment text-[#525252] border-hairline hover:text-[#121212] hover:bg-[#FAF9F6]'
             }`}
-            title="Configure Google Gemini 2.5 Flash API Key"
+            title="Configure Google Gemini 3.5 Flash API Key"
           >
             <Sparkles className={`w-3.5 h-3.5 ${isAIConfigured ? 'text-purple-600 animate-pulse' : 'text-[#737373]'}`} />
             <span className="hidden sm:inline font-mono text-[11px] font-semibold">
-              {isAIConfigured ? 'Gemini 2.5' : 'AI Setup'}
+              {isAIConfigured ? 'Gemini 3.5' : 'AI Setup'}
             </span>
           </button>
 

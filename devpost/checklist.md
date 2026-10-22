@@ -64,7 +64,7 @@ Build mode: learn mode
 - [x] Optional edit and transfer reflection addressed — dual-engine AI architecture practice
 - [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: All 4 slices built and verified mechanically (`npm run build` passing cleanly) and interactively. Added Google Gemini 2.5 Flash client-side integration for unscripted adversarial pushback sparring and arbitrary contract clause risk audits. Added Swiss Editorial AISettingsModal with localStorage key persistence and mock demo fallback. Generated `devpost/app-map.html`.
+Activity and evidence: All 4 slices built and verified mechanically (`npm run build` passing cleanly) and interactively. Added Google Gemini 3.5 Flash client-side integration for unscripted adversarial pushback sparring and arbitrary contract clause risk audits. Added Swiss Editorial AISettingsModal with localStorage key persistence and mock demo fallback. Generated `devpost/app-map.html`.
 Route and stops: `src/engine/synthesisEngine.ts`, `src/services/geminiService.ts`, `src/components/DocumentWorkspace.tsx` and `src/App.tsx`.
 Edit outcome: Kept; verified via Vite production bundle and clean dev server reload.
 Reflection: Dual-engine architecture: combining 0ms local deterministic state with asynchronous LLM sparring for zero-latency UI responsiveness.
@@ -72,5 +72,5 @@ Activity mode: Live app and editor, standalone app map.
 
 ## Revisions
 
-- Revision 1: Added Google Gemini 2.5 Flash AI integration to Objection Simulator (`src/components/ObjectionSimulator.tsx`) and Clause Radar (`src/components/ClauseRadar.tsx`) with client-side direct calls, structured JSON outputs, and fallback demo simulations.
+- Revision 1: Added Google Gemini 3.5 Flash AI integration to Objection Simulator (`src/components/ObjectionSimulator.tsx`) and Clause Radar (`src/components/ClauseRadar.tsx`) with client-side direct calls, structured JSON outputs, and fallback demo simulations.
 - Revision 2: Added `src/components/AISettingsModal.tsx` and header telemetry trigger to allow judges and users to supply their own Gemini API keys directly in the browser with full privacy.

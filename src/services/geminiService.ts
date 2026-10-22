@@ -51,7 +51,7 @@ export function hasGeminiApiKey(): boolean {
 }
 
 /**
- * Call Google Gemini 2.5 Flash with structured JSON output
+ * Call Google Gemini 3.5 Flash directly with structured JSON output
  */
 async function callGemini(prompt: string, systemInstruction: string): Promise<any> {
   const apiKey = getGeminiApiKey();
@@ -59,7 +59,7 @@ async function callGemini(prompt: string, systemInstruction: string): Promise<an
     throw new Error('NO_API_KEY');
   }
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
 
   const requestBody = {
     contents: [
@@ -99,7 +99,7 @@ async function callGemini(prompt: string, systemInstruction: string): Promise<an
 }
 
 /**
- * AI-Powered Objection Simulator
+ * AI-Powered Objection Simulator (Gemini 3.5 Flash)
  */
 export async function generateObjectionCounterFrames(
   persona: Persona,
@@ -136,7 +136,7 @@ Return a valid JSON object matching this exact structure:
 }
 
 /**
- * AI-Powered Contract Clause Radar
+ * AI-Powered Contract Clause Radar (Gemini 3.5 Flash)
  */
 export async function analyzeContractClause(
   persona: Persona,
