@@ -56,7 +56,7 @@ Per hackathon requirements, this project was planned and executed using the offi
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/leverage.git
+git clone https://github.com/miracle-a-osigwe/leverage.git
 cd leverage
 
 # Install dependencies
