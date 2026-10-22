@@ -1,144 +1,139 @@
-# Leverage — 90-Second Demo Video Script
+# Leverage — High-Impact Demo Video Script
 
-> **Target Duration:** ~90 seconds (Devpost maximum: 2 minutes)  
-> **Format:** Clean desktop screen recording + live voiceover (No presentation slides; 100% working product).  
-> **Recommended Tool:** Loom, OBS Studio, or QuickTime / Windows Snipping Tool Screen Recorder.
-
----
-
-## 📋 Pre-Recording Setup Checklist
-
-- [ ] Dev server running (`npm run dev` — usually at `http://localhost:5173` or `http://localhost:5174`).
-- [ ] Browser window set to full 1080p (or 16:9 ratio), with bookmarks bar hidden (`Ctrl+Shift+B` / `Cmd+Shift+B`).
-- [ ] Browser zoom level at 100% for crisp typography.
-- [ ] Audio input checked — speak with calm, authoritative pacing.
-- [ ] Optional: Add your Gemini API key in the top bar beforehand (or rely on the instant built-in demo fallback).
+> **Target Duration:** ~95 seconds (Devpost limit: 2 minutes)  
+> **Style & Tone:** Calm, charismatic, executive conviction. Sound like an articulate founder/operator, not a product manual.  
+> **Format:** 1080p desktop screen recording + live voiceover (No slides; 100% interactive product).
 
 ---
 
-## 🎬 Step-by-Step Recording Timeline
+## ⚡ 30-Second Practice Click Path (Rehearsal Cheat Sheet)
 
-### ⏱️ 0:00 – 0:15 | The Hook & High-Stakes Asymmetry
+Before recording, run through this 8-click path twice with your mouse:
 
-🎬 **VISUAL ACTION (On Screen):**
-- Browser displays the clean **Leverage** home interface at `http://localhost:5173`.
-- Smoothly move mouse over the Swiss Editorial header: the `L` monogram, `LEVERAGE`, and the `Subtext Equalizer` heading.
-- Briefly highlight the green lock pill: `Client-Side Local Session • Zero Remote Leaks`.
-
-🎙️ **NARRATION (Voiceover):**
-> "In career and venture negotiations, the biggest disadvantage isn't skill—it's leverage asymmetry.
-> 
-> When an investor stalls a wire or a recruiter caps your salary, most people either sound desperate or overly aggressive.
-> 
-> This is **Leverage**: the tactical negotiation copilot built for founders and professionals to command the room and equalize high-stakes deals."
-
----
-
-### ⏱️ 0:15 – 0:28 | Loading a High-Stakes Scenario
-
-🎬 **VISUAL ACTION (On Screen):**
-- Click on the scenario chip: **`Founder: Late Investor Wire`**.
-- The raw draft populates: *"Hi Mark, just checking in to see if the wire was sent..."*
-- Hover mouse over the sliders: `Firmness` is set low at 30, `Diplomacy` at 70.
-- Point cursor to the **Leverage Index badge** showing a weak posture score of `34 / 100` in amber.
-
-🎙️ **NARRATION (Voiceover):**
-> "Watch what happens in a real high-pressure scenario: a lead investor stalls their wire by four weeks.
-> 
-> The founder's raw draft is completely passive: *'Take your time, totally understand.'* 
-> 
-> Our Leverage Index immediately flags a weak posture score of 34, revealing massive unforced concessions."
+| Beat | Timestamp | UI Action / Click Target | What Appears |
+|:---:|:---:|:---|:---|
+| **1** | `0:08` | **[CLICK]** `🧭 Guide Me` (top right header) | Interactive spotlight tour overlay opens |
+| **2** | `0:16` | **[CLICK]** `Load Demo & Start →` (in guide modal) | Modal closes; loads `Late Investor Wire` at raw baseline |
+| **3** | `0:28` | **[HOVER]** `Raw Baseline (32% Severe Concession Leak)` | Highlights the raw posture diagnostic telemetry |
+| **4** | `0:35` | **[CLICK]** `⚡ Auto-Equalize Posture` (or drag Firmness to 85%) | Real-time redline transforms; score surges to 88% |
+| **5** | `0:48` | **[CLICK]** `Clean Dispatch` tab &rarr; **[CLICK]** `Copy Dispatch` | Shows sanitized executive email; copies to clipboard |
+| **6** | `1:00` | **[CLICK]** `Objections` (header tab) &rarr; `+ AI Custom Pushback` | Opens Google Gemini adversarial pushback drawer |
+| **7** | `1:08` | **[CLICK]** Chip: *"We want 25% equity or we walk"* &rarr; `Generate AI Counters` | Gemini 3.5 Flash streams 3 strategic counter-frames |
+| **8** | `1:20` | **[CLICK]** `Clause Radar` &rarr; `Custom AI Audit` &rarr; `Paste Sample` &rarr; `Run Gemini Audit` | Audits contract trap; generates equitable counter-clause |
 
 ---
 
-### ⏱️ 0:28 – 0:40 | Dual Reactive Tuning & Live Redlines (The Kernel)
-
-🎬 **VISUAL ACTION (On Screen):**
-- Drag the **`Firmness`** slider smoothly from **30 up to 85**.
-- In the workspace below, watch the live redline update with zero latency:
-  - **Crimson strikethroughs** instantly cut out apologies and passive hedges (*"Sorry to bother you"*, *"whenever you get a chance"*).
-  - **Sage green insertions** introduce firm mutual timelines and operational contingencies.
-- Notice the **Leverage Index** dial up in real time from `34` to `88 / 100` (Optimal Command).
-
-🎙️ **NARRATION (Voiceover):**
-> "Watch the live redline. As I dial Firmness up to 85, Leverage evaluates the syntax with zero latency.
-> 
-> It strikes out unassertive subtext in crimson, and inserts hard mutual deadlines in sage green. 
-> 
-> No awkward hostility—just firm, disciplined boundary control. The Leverage Index instantly surges to 88."
+## 🎬 Master Recording Script & Choreography
 
 ---
 
-### ⏱️ 0:40 – 0:52 | Clean Dispatch & Tactical Debrief
+### ⏱️ 0:00 – 0:20 | The Hook & The "Guide Me" Orientation
 
-🎬 **VISUAL ACTION (On Screen):**
-- Click the **`Clean Dispatch`** toggle button in the redline card header.
-- Click the **`Copy Dispatch`** button. Watch it animate to **`Copied to Clipboard ✓`** in green.
-- Scroll down slightly and click to expand the **`Tactical Debrief`** drawer.
-- Hover over the breakdown tags: `Concession Risk Neutralized`, `Anchor Established`.
+🎬 **VISUAL ACTIONS (At Top of Beat):**
+1. **[0:00]** Browser is open to `http://localhost:5173`. Move cursor smoothly across the Swiss Editorial header: `LEVERAGE` monogram and `Client-Side Local Session` privacy lock.
+2. **[0:08]** Click **`🧭 Guide Me`** in the top right header.
+3. **[0:10]** Watch the spotlight dim the background and illuminate the Scenario Matrix.
+4. **[0:16]** Click **`Load Demo & Start →`** in the tour modal. The modal dissolves, smoothly locking onto the **Late Investor Wire** scenario in the live workspace.
 
-🎙️ **NARRATION (Voiceover):**
-> "Switching to Clean Dispatch view gives me an executive-ready message. One click copies the sanitized text straight to my clipboard.
+🎙️ **VOICEOVER (Calm, authoritative, conversational):**
+> "In high-stakes career and venture deals, you don’t lose because your product is weak—you lose because you leak leverage in your words.
 > 
-> Expanding the Tactical Debrief breaks down the game theory behind every sentence—re-framing the delay as a mutual project risk rather than an individual favor."
+> When an investor stalls a wire or an enterprise client demands unearned discounts, most people either get timid or unnecessarily aggressive.
+> 
+> This is **Leverage**—an executive negotiation copilot that acts like a tactical flight simulator for your communication.
+> 
+> Notice that whether you're stepping in cold or mid-deal, one click on **Guide Me** spotlights the entire operating system: tone calibration, subtext redlines, and real-time deal defense."
 
 ---
 
-### ⏱️ 0:52 – 1:10 | Meeting Objection Simulator & Google Gemini AI Sparring
+### ⏱️ 0:20 – 0:42 | The Raw Diagnosis & 0ms Redline Transformation
 
-🎬 **VISUAL ACTION (On Screen):**
-- Click **`Objections`** in the top navigation bar.
-- Show the curated pushback card (*"Your burn rate is too high for this round"*).
-- Briefly point out the three battle-tested frames: **`Direct Answer`**, **`Pivot Frame`**, and **`High Ground Question`**.
-- Click the black button: **`+ AI Custom Pushback`**.
-- In the input drawer, click the quick prompt chip: *"We want 25% equity or we walk"* (or type an aggressive objection).
-- Click **`Generate AI Counters`**.
-- Within 1 second, watch Google Gemini 3.5 Flash return 3 bespoke adversarial counter-frames tailored to the objection.
+🎬 **VISUAL ACTIONS (At Top of Beat):**
+1. **[0:20]** Mouse hovers over the loaded raw draft: *"Hi Mark, just checking in to see if the wire was sent... totally understand if things are backed up..."*
+2. **[0:25]** Point cursor directly to the telemetry ribbon: **`Raw Baseline 32% (Severe Concession Leak)`** and the **`Diagnosis`** callout.
+3. **[0:32]** Click the **`⚡ Auto-Equalize Posture`** button (or smoothly glide the **Firmness** slider up from 24% to 85%).
+4. **[0:36]** Cursor traces the live redline:
+   - Crimson strikethrough deleting: *"Sorry to bother you"* and *"whenever you get a chance"*
+   - Sage green insertion adding: *"In order to maintain our Q3 vendor milestones, we need the wire confirmation by Friday 5 PM EST."*
+5. **[0:39]** Highlight the **Leverage Index badge** surging from **`32%` &rarr; `88% (+56%)`** in vivid sage green.
 
-🎙️ **NARRATION (Voiceover):**
-> "Next: live meeting pushback. In the Objection Simulator, founders practice against hostile questions.
+🎙️ **VOICEOVER (Paced, engaging, revealing the magic):**
+> "Let’s take a founder's worst nightmare: a lead investor stalling a wire by four weeks.
 > 
-> Even better: with our **Google Gemini 3.5 Flash** integration, you can spar against ANY unscripted objection.
+> The raw draft is pure passive hedging: *'Sorry to follow up, whenever you get a chance.'*
 > 
-> Type the counterparty's exact words, and Gemini instantly constructs three structured frames: a direct de-escalation, a strategic value pivot, and a high-ground question that turns the pressure back on them."
+> Instantly, our linguistic engine diagnoses a **32% baseline leverage**—flagging severe unforced concessions.
+> 
+> Now, watch what happens when we hit **Auto-Equalize**.
+> 
+> Zero latency. The crimson redlines violently strip away apologetic hedges. The sage green inserts hard, professional operational boundaries. 
+> 
+> No hostility—just disciplined, executive command. Our posture index surges 56 points to 88%."
 
 ---
 
-### ⏱️ 1:10 – 1:23 | Clause Radar & AI Contract Clause Auditor
+### ⏱️ 0:42 – 0:56 | Clean Dispatch & Game-Theoretic Debrief
 
-🎬 **VISUAL ACTION (On Screen):**
-- Click **`Clause Radar`** in the top navigation bar.
-- Switch to the **`Custom AI Audit`** tab.
-- Click **`Paste Sample Hazard Clause`** (e.g. perpetual IP forfeiture / unilateral indemnification).
-- Click the black button: **`Run Gemini Audit`**.
-- The result renders: `HIGH RISK` badge, bulleted loophole explanation, and an **`Equitable Counter-Clause`**.
-- Click **`Copy Counter-Clause`** (animates to `Copied! ✓`).
+🎬 **VISUAL ACTIONS (At Top of Beat):**
+1. **[0:42]** Click the **`Clean Dispatch`** toggle tab above the text canvas.
+2. **[0:45]** Click **`Copy Dispatch`**. Watch the micro-interaction trigger: **`Copied to Clipboard ✓`**.
+3. **[0:49]** Click to expand the **`Tactical Debrief`** accordion below.
+4. **[0:52]** Hover over the pill badges: `Concession Risk Neutralized`, `Anchor Established`.
 
-🎙️ **NARRATION (Voiceover):**
-> "Finally, Clause Radar protects you from contract traps. 
+🎙️ **VOICEOVER (Crisp, practical, founder-to-founder):**
+> "One tap switches to **Clean Dispatch**—a pristine, send-ready executive email. Click copy, and it's already on your clipboard.
 > 
-> Paste any questionable paragraph from an offer letter, advisory agreement, or term sheet. 
-> 
-> Gemini audits the legal hazard level, unmasks the hidden loopholes, and drafts an equitable, balanced counter-clause you can paste directly into redlines."
+> Open the **Tactical Debrief**, and Leverage breaks down the exact game theory behind the revision—re-anchoring the delay as a shared milestone risk rather than a personal favor."
 
 ---
 
-### ⏱️ 1:23 – 1:30 | Privacy Architecture & Sign-off
+### ⏱️ 0:56 – 1:16 | Live Meeting Pushback with Google Gemini 3.5 Flash
 
-🎬 **VISUAL ACTION (On Screen):**
-- Click the **`Gemini AI`** pill in the top header to display the privacy-first key configuration modal.
-- Close modal, returning to the clean Swiss Editorial workspace.
-- Hold mouse still on the final screen.
+🎬 **VISUAL ACTIONS (At Top of Beat):**
+1. **[0:56]** Click **`Objections`** in the top navigation bar.
+2. **[1:00]** Click the black button: **`+ AI Custom Pushback`**.
+3. **[1:03]** In the prompt drawer, click the preset chip: **`"We want 25% equity or we walk"`**.
+4. **[1:06]** Click **`Generate AI Counters`**.
+5. **[1:08]** Watch Google Gemini 3.5 Flash generate 3 structured battle frames in real time:
+   - **Direct Answer** (neutralizing fear)
+   - **Pivot Frame** (re-centering value)
+   - **High Ground Question** (reversing the interrogation)
 
-🎙️ **NARRATION (Voiceover):**
-> "Leverage connects directly to Gemini client-side with zero intermediary servers—your private compensation numbers and deal memos stay completely confidential.
+🎙️ **VOICEOVER (High energy, dynamic, visionary):**
+> "Now, what happens when they push back live on the Zoom call?
 > 
-> Equalize the table. That is **Leverage**. Thank you!"
+> Enter the **Objection Simulator**. Powered by **Google Gemini 3.5 Flash**, you can test against any hostile pushback before you enter the room.
+> 
+> Let's throw in a predatory demand: *'We want 25% equity or we walk.'*
+> 
+> In less than a second, Gemini gives you three strategic frames: a calm direct answer, a high-ground value pivot, and a lethal counter-question that turns the table right back on them."
 
 ---
 
-## 💡 Quick Tips for a 1st-Place Recording
+### ⏱️ 1:16 – 1:35 | Clause Radar & The Clean Close
 
-1. **Pause 1 second between clicks:** Give the viewer's eyes time to follow the cursor to the sliders and buttons.
-2. **Don't rush the voiceover:** 90 seconds is plenty of time for ~180 spoken words. A calm, measured cadence matches the Swiss Editorial aesthetic.
-3. **If you make a mistake:** Don't stop recording! Simply pause for 2 seconds and re-read the sentence. You can trim that 2-second clip in any video editor in 10 seconds.
+🎬 **VISUAL ACTIONS (At Top of Beat):**
+1. **[1:16]** Click **`Clause Radar`** in the top navigation bar.
+2. **[1:18]** Click **`Custom AI Audit`** &rarr; click **`Paste Sample Hazard Clause`**.
+3. **[1:22]** Click **`Run Gemini Audit`**.
+4. **[1:25]** Point cursor to the **`HIGH RISK`** badge, the highlighted legal loophole, and the generated **`Equitable Counter-Clause`**.
+5. **[1:29]** Click **`Copy Counter-Clause`** (`Copied! ✓`).
+6. **[1:31]** Scroll up slightly to show the full aesthetic interface and hold steady.
+
+🎙️ **VOICEOVER (Decisive, closing strong):**
+> "Finally, when the revised contract arrives, **Clause Radar** protects you from predatory legal gotchas.
+> 
+> Paste any contract paragraph. Gemini audits the trap, exposes the loophole, and drafts the exact counter-clause to paste straight into your redline.
+> 
+> Everything runs client-side with zero remote server leaks.
+> 
+> Don't negotiate from your heels. Equalize the room with **Leverage**."
+
+---
+
+## 🎙️ Delivery & Audio Coaching Notes
+
+- **Cadence:** Speak at an unhurried, steady conversational pace (~135 words per minute). Let the visual redline animation breathe for half a second before finishing the sentence.
+- **The "Auto-Equalize" Moment:** Deliver *"Boom. Zero latency."* or *"Now, watch what happens when we hit Auto-Equalize"* with genuine founder pride.
+- **Micro-Pauses:** When clicking a button, allow your cursor to land, pause for 0.3s, click, and keep moving smoothly. Jittery mouse movement hurts demo aesthetics.
+- **If You Stumble:** Don't restart the entire recording. Stop talking, wait 2 seconds of clean silence, re-read the sentence from the start of that timestamp, and keep going. You can slice that 2-second gap out in 10 seconds in any video editor.
